@@ -28,6 +28,7 @@
 %\cogscifinalcopy % Uncomment this line for the final submission 
 
 \usepackage[super]{nth}
+\usepackage{booktabs}
 \usepackage{pslatex}
 \usepackage{apacite}
 \usepackage{graphicx}
@@ -53,7 +54,7 @@
 \newcommand{\gorls}{\gorl{}s}
 \newcommand{\xy}[2]{$#1\times#2$}
 
-\title{Efficiency of Learning in Experience-Limited Domains: Generalization Beyond the Wug Test}
+\title{Efficiency of Learning in Experience-Limited Domains:\\Generalization Beyond the Wug Test}
  
 \author{%
 	{\large \bf Christopher R.~Cox (chriscox@lsu.edu)} \\
@@ -85,21 +86,21 @@ reading; learning; generalization; computational modeling; representation
 
 \section{Introduction}
 
-Generalization—the ability to apply existing knowledge to novel cases—is an important capacity observed, with varying complexity, in many species \cite{Santolin2018}. Human generalization encompasses a broad range of behaviors, ranging from generalizations about the properties of three dimensional space to ones based on physical appearance.  The behavioral and neurobiological bases of generalization are a focus of much research (e.g., \cite{Goldberg2009,Onat2015,Zhang2016}).
+Generalization---the ability to apply existing knowledge to novel cases---is an important capacity observed, with varying complexity, in many species \cite{Santolin2018}. Human generalization encompasses a broad range of behaviors, ranging from generalizations about the properties of three dimensional space to ones based on physical appearance.  The behavioral and neurobiological bases of generalization are a focus of much research (e.g., \citeNP{Goldberg2009,Onat2015,Zhang2016}).
 
-Generalization is especially important in language acquisition and learning to read. Children rapidly acquire knowledge that allows them to generalize beyond the limited sample of utterances in their experience \cite{Chomsky1965}. The classic evidence is the wug test \cite{Berko1958}: a child who has learned about plural formation can generalize to novel cases:  one wug, two wugs.  Similarly, a beginning reader who has learned about the correspondences between spelling and pronunciation can ``decode'' nonce words such as nust and glorp \cite{Seidenberg1989}.  These types of generalizations have long been taken as evidence for the use of rules \cite{Pinker1991}; more recently they have been seen as byproducts of statistical learning in quasiregular domains, as captured in simple artificial neural networks \cite{Seidenberg2014}.
+Generalization is especially important in language acquisition and learning to read. Children rapidly acquire knowledge that allows them to generalize beyond the limited sample of utterances in their experience \cite{Chomsky1965}. The classic evidence is the ``Wug Test'' \cite{Berko1958}. A child who has learned about plural formation can generalize to novel cases:  one wug, two wugs.  Similarly, a beginning reader who has learned about the correspondences between spelling and pronunciation can ``decode'' nonce words such as \exword{nust} and \exword{glorp} \cite{Seidenberg1989}.  These types of generalizations have long been taken as evidence for the use of rules \cite{Pinker1991}; more recently they have been seen as byproducts of statistical learning in quasiregular domains, as captured in simple artificial neural networks \cite{Seidenberg2014}.
 
 Our research examines generalization from a perspective that focuses on efficiency of learning. Efficiency is a concern in many real-world contexts in which learning opportunities are constrained in ways that do not arise in machine learning applications. For example, children's vocabulary development varies because it depends on their exposure to spoken language, which varies \cite{Hart1995}.  Differences in vocabulary size and quality have an enormous impact on learning to read and other aspects of schooling;  however, gaps cannot be closed solely through explicit instruction because there isn't enough time \cite{Seidenberg2017}. The same holds for learning mappings between written and spoken language. Phonics instruction is helpful, but there is only time to teach a subset of patterns. In these experience-limited domains, children learn from relatively limited data and so generalization is paramount.
 
-In classic accounts, generalization is assessed by exposing a child or neural network to examples of a pattern and testing them on untrained items, either nonce words or withheld words. The number and composition of examples are not the focus of attention, but they are highly relevant in experience-limited domains.  We therefore re-formulated the generalization question as follows, using spelling-sound knowledge as a test case: 
+In classic accounts, generalization is assessed by exposing a child or neural network to examples of a pattern and testing them on untrained items, either nonce words or withheld words. Typically the number and composition of examples are not the focus of attention, but these are critical factors in experience-limited domains.  We therefore re-formulated the generalization question as follows, using spelling-sound knowledge as a test case: 
 
 \begin{itemize}
 	\item Children need to acquire the ability to generate pronunciations for many written words;  
-	\item They are explicitly taught the correspondences for a smaller subset of words;
+	\item They are explicitly taught the correspondences between orthography and phonology for a smaller subset of words;
 	\item Generalization is assessed in terms of correct performance on untrained items in the larger set, rather than nonce words such as \exword{wug} or \exword{nust}. That shifts the focus of generalization to acquiring real-world knowledge they need.
 \end{itemize}
 
-The research question is then how the size and composition of the training set affects generalization to untrained items.  Learning is efficient if the ratio between the number of trained items and the number of generalization items is low. We examined efficiency of learning as a function of the size of the training set using simple, well-studied models of learning orthography-phonology correspondences \cite{Seidenberg1989,Seidenberg2014}. We also examined how efficiency was affected by the composition of the training set of a given size. The results suggest that it may be possible to improve children's learning by optimizing their early reading instruction experiences to focus on particular sets of words.
+The research question is then how the size and composition of the training set affects generalization to untrained items. Learning is efficient if the ratio between the number of trained items and the number of generalization items is low. We examined efficiency of learning as a function of the size of the training set using simple, well-studied models of learning orthography-phonology correspondences \cite{Seidenberg1989,Seidenberg2014}. We also examined how efficiency was affected by the composition of the training set of a given size. The results suggest that it may be possible to improve children's learning by optimizing their early reading instruction experiences to focus on particular sets of words.
 
 \section{Materials and Methods}
 
@@ -133,6 +134,26 @@ An output pattern was scored as correct if all unit activations were within 0.5 
 \section{Results}
 
 \subsection{Training set size and generalization}
+\begin{table}[b]
+	\begin{center}
+		\begin{tabular}{r r r r r}
+			Size & Mean & (Ratio) & Max & (Ratio) \\
+			\toprule
+			100&333&(3.33)&590&(5.90)\\
+			200&889&(4.45)&1252&(6.26)\\
+			300&1240&(4.13)&1546&(5.15)\\
+			400&1404&(3.51)&1634&(4.08)\\
+			500&1469&(2.94)&1668&(3.34)\\
+			600&1484&(2.47)&1654&(2.76)\\
+			700&1470&(2.10)&1618&(2.31)\\
+			800&1438&(1.80)&1566&(1.96)\\
+			900&1395&(1.55)&1510&(1.68)\\
+			1000&1344&(1.34)&1444&(1.44)\\
+		\end{tabular}
+		\caption{Mean and maximum generalization performance over 100k models fit with each training set size. Ratios divide the previous descriptive statistic by the training set size.}
+	\end{center}
+\end{table}
+
 Figure \ref{gen_by_setsize}A shows generalization to untrained items as a function of training set size.  Smaller training sets afford more opportunities for generalization, but are less able to provide representative coverage of the corpus. Increasing the size of the training set produced diminishing generalization returns. Increasing training sets beyond 500 words did not yield better generalization. 
 
 Figure \ref{gen_by_setsize}B shows total number of words correct (trained and generalized). No model produced correct performance for all words. Some words were only learned if they were included in the training set; they were never produced correctly by generalization. These include words such as \exword{sixth}, \exword{draught}, \exword{scheme}, \exword{coups}, and \exword{jinx}. These are words with atypical spellings or pronunciations. 
@@ -142,7 +163,7 @@ Figure \ref{gen_by_setsize}C shows an index of \emph{training set efficiency}, d
 \begin{figure}[t]
 	\includegraphics[width=0.9\columnwidth]{figures/generalization_by_setsize.png}
 
-	\caption{Reading vocabulary size and generalization ability for increasing training set sizes. A) The number of accurate generalization peaks at lower training set sizes and B) the rate of reading vocabulary growth slows. No model trained on a subset of words is capable of reading all words. C) The ratio of generalization performance and training set size, efficiency, is highest with training sets with 200--300 words.}
+	\caption{Reading vocabulary size and generalization ability for increasing training set sizes. A) The number of accurate generalization peaks at lower training set sizes and B) the rate of reading vocabulary growth slows. No model trained on a subset of words is capable of reading all words. C) The ratio of generalization performance and training set size, efficiency, is highest with training sets with 200--300 words. Dots indicate the mean; dotted lines are $\pm 1 SD$; solid lines are minimum and maximum values.}
 	
 	\label{gen_by_setsize}
 \end{figure}
@@ -165,27 +186,43 @@ At one extreme are words that are accurately generalized to with almost any rand
 
 Whether a word was likely to be generalized to was related to quantifiable measures of orthographic, phonological, and relational typicality. For each word, we computed the mean pairwise distance between its orthographic representation and the orthographic representations of all other words in the corpus. The same was done for the phonological representations, and representations associated with the mapping between orthography and phonology obtained by training an instance of our model on all words in the corpus until mastery (all phonological outputs are accurate) and extracting the 100 unit hidden layer activation for each word. These will be referred to as the \emph{mapping representations}. Standard deviations (SD) were recorded along with the means of these pairwise distances.
 
+\begin{figure}[t]
+	\includegraphics[width=0.9\columnwidth]{figures/word_accuracy_by_hiddenSD.png}
+	
+	\caption{The probability of accurate generalization to each word, regressed on the standard deviation (SD) of the distance between each word's ``mapping'' representation and the mapping representations of other words, after removing variance explained by mean orthographic and phonological distance. This metric will be low for words that have a high mean distance while utilizing dimensions in the representational space that are relatively unused by other words.}
+	\label{word_acc_regression}
+\end{figure}
+
+\begin{table}[b]
+	\begin{center}
+		\begin{tabular}{l r}
+			\textbf{regressor} & $\Delta \mathbf{R^2}$\\
+			\toprule
+			orth. distance & 0.015\\
+			phon. distance & 0.033\\
+			mapping rep. SD & 0.104\\
+		\end{tabular}
+		\caption{Effect sizes for the regressors used to account for variance in the probability of accurately generalizing each word. The SD of the distances from a given word to all other words in terms of the ``mapping representations'' is considerably more effective than the distances in either modality.}
+	\end{center}
+\end{table}
+
 Pairwise average distance in orthographic and phonological space each were correlated with the probability of accurate generalization over words ($r = -0.31$ and $r = -0.28$, respectively). Interestingly, the mean distance among the mapping representations is essentially uncorrelated with accuracy ($r = -0.05$); instead, the SDs associated with these means is the strongest correlate with the probability of accurate generalization ($r = 0.33$). 
 
 The SD of the distances to a point emphasizes its position within the coordinate space in a way that is quite different from the mean. Consider a set of points that fall on a line. If we take one of those points and move it along the line, its mean distance from the other points will change \emph{but the SD of the distances will not}. Now, if we take that same point and pull it off the line, into a second dimension, the mean distance will grow as the point continues its excursion in the new dimension. \emph{The SD among those distances, however, will shrink}. In other words, words with small SDs are likely to occupy idiosyncratic ``representational niches''. We would expect ``sight words'' to occupy such niches, and indeed words like \exword{quay} (pronounced ``key'') and \exword{queue} (pronounced ``cue'') have the lowest SD. Quay in particular has the \nth{2} smallest SD and the \nth{2045} largest mean over distances to the other words; the SD is consistent with its atypicality, while the mean misrepresents it as being very similar to other mappings.
 
-Regressing the probability of accurate generalization for each word on its mean orthographic distance, mean phonological distance, and the SD of distances to mapping representations accounts for 22\% of the overall variance in generalization error, with mapping representation SD metric accounting for 12\% of the variance ($b = 0.23$, $SE = 0.01$, $F(1, 2875) = 383$, $p < 0.001$, $\eta_p^2 = 0.12$, $95\%$, $CI[.25, .21]$). Figure \ref{word_acc_regression} displays model plotted over the accuracy data for each word, with variance explained by orthographic and phonological mean distance removed.
-
-\begin{figure}[t]
-	\includegraphics[width=0.9\columnwidth]{figures/word_accuracy_by_hiddenSD.png}
-
-	\caption{The probability of accurate generalization to each word, regressed on the standard deviation (SD) of the distance between each word's ``mapping'' representation and the mapping representations of other words, after removing variance explained by mean orthographic and phonological distance. This metric will be low for words that have a high mean distance while utilizing dimensions in the representational space that are relatively unused by other words.}
-	\label{word_acc_regression}
-\end{figure}
+Regressing the probability of accurate generalization for each word on its mean orthographic distance, mean phonological distance, and the SD of distances to mapping representations accounts for 22\% of the overall variance in generalization error, with mapping representation SD metric accounting for about 10\% of the variance. Table 2 reports the effect size of each regressor, emphasizing the relative importance of the SD variable. Figure \ref{word_acc_regression} displays the model plotted over the accuracy data for each word, with variance explained by orthographic and phonological mean distance removed, while orthographic and phonological mean distance are held constant at their means.
 
 
 \subsection{Discussion}
 We have established a computational procedure for investigating two aspects of generalization in learning basic reading skills: how many words need to be learned to generalize to real English words yet to be learned, and what aspects of reading vocabulary promote this transfer.  Our findings indicate that while printed vocabulary continues to grow along the number of words taught, the efficiency of learning does not grow along with it.
 
-As the teacher grows the number of words she or he would like to teach, the amount of learning time needed grows along with it. Our findings suggest a trade-off where a smaller number of words could be taught, optimizing efficiency of learning and teaching for sake of near-optimal generalization capacity. This has substantial implications for reading education where very often exhaustive sequential instruction of rule-based mappings from print to sound dominate in pedagogical approaches that consider phonics skills valuable to students.
+As the teacher grows the number of words she or he would like to teach, the amount of learning time needed grows along with it. Our findings suggest a trade-off where a smaller number of words could be taught, optimizing efficiency of learning and teaching for sake of near-optimal generalization capacity. This has substantial implications for reading education where very often exhaustive sequential instruction of rule-based mappings from print to sound dominate in pedagogical approaches that consider phonics skills valuable to students. This approach could be particularly useful for students that need to catch up due to insufficient reading skills. When learning to read is cast as a generalization problem we may more easily be able to help students that require the most care and attention, where time is of the essence, by targeting specific deficits in her or his capacity to generalize knowledge to the printed language.
 
-We don't fully understand the factors of printed vocabulary that promote generalization, both at the word- and set-level. This will be the topic of future research. Follow up simulations will include systematic sampling of words in a theory-driven way with respect to their orth-phon structure, as well as sequencing that input to promote generalization. Nonetheless, these simulations demonstrate that it is possible to be more efficient with curricula that attend to the number of words taught and the words that a prioritized in teaching.
+The problem of maximizing generalization with the smallest possible training set can be formalized as a \emph{machine teaching} optimization problem \cite{Zhu2015}. We have drawn on this literature by manipulating the learning environment while holding the abilities of the learner constant, and then performing careful analyses of the outcomes to identify the factors that contribute to training the most proficient models. In doing so we have demonstrated systematic relationships between the composition of the training set and generalization performance that machine teachers may be able to discover and exploit. 
 
+These results are empirical; our next step will be to identify properties of words and word-sets responsible for better generalization both at the word- and set-level. As indicated in our regression model reported, item-wise measures of phonology, orthography, and especially the mapping representation account for non-trivial amounts of generalization error. Next steps will be oriented towards accounting for more of the variance in generalization accuracy, and to scale up analyses to model-wise characteristics that promote generalization. It may also be possible to improve efficiency even further by using training sets attuned to children's vocabulary development, and by optimizing the sequence of learning experiences.
+
+Though preliminary, these simulations demonstrate that it is possible to be more efficient with curricula that attend to the number of words taught and the words that are prioritized in teaching.
 
 %\section{Acknowledgments}
 %The research reported here was supported by the Institute of Education Sciences, US Department of Education, through Award \#R305B150003 to the University of Wisconsin, Madison. The opinions expressed here are those only of the authors and do not at all represent the views of the U.S. Department of Education. The Center for High Throughput Computing (CHTC) is supported by UW-Madison, the Advanced Computing Initiative, the Wisconsin Alumni Research Foundation, the Wisconsin Institutes for Discovery, and the National Science Foundation, and is an active member of the Open Science Grid, which is supported by the National Science Foundation and the U.S. Department of Energy's Office of Science.
